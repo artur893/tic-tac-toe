@@ -1,0 +1,13 @@
+:root {
+
+--dark: rgb(34, 40, 49);
+--lightdark: rgb(57, 62, 70);
+--med: rgb(214, 90, 49);
+--white: rgb(238, 238, 238);
+
+}
+
+body {
+background-color: var(--lightdark);
+
+}
