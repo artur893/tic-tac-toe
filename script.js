@@ -13,7 +13,9 @@ const Gameboard = (function () {
     }
 
     const putSign = function (index, sign) {
-        gameBoard[index] = sign
+        if (gameBoard[index] === "") {
+            gameBoard[index] = sign
+        }
     }
 
     return { gameBoard, putSign, getSign }
@@ -55,10 +57,12 @@ const Gameflow = (function () {
         Dom.square.forEach((square) => {
             square.addEventListener("click", function (e) {
                 const index = e.target.dataset.index
-                round++
-                sign = Gameboard.getSign(round)
-                Gameboard.putSign(index, sign)
-                Render.render()
+                if (Gameboard.gameBoard[index] === "") {
+                    round++
+                    Gameboard.putSign(index, Gameboard.getSign(round))
+                    Render.render()
+                }
+
             })
         })
     }
