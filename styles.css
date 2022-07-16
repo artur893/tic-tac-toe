@@ -1,13 +1,53 @@
 :root {
 
---dark: rgb(34, 40, 49);
---lightdark: rgb(57, 62, 70);
---med: rgb(214, 90, 49);
---white: rgb(238, 238, 238);
+    --dark: rgb(34, 40, 49);
+    --lightdark: rgb(57, 62, 70);
+    --med: rgb(214, 90, 49);
+    --white: rgb(238, 238, 238);
+    font-size: 20px;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    color: var(--white);
 
 }
 
 body {
-background-color: var(--lightdark);
+    background-color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+}
+
+header {
+    margin: 20px;
+}
+
+h1 {
+    font-size: 80px;
+}
+
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    width: 60vh;
+    height: 60vh;
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--lightdark);
+    font-size: 15vh;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: 200ms;
+}
+
+.square:hover {
+    cursor: pointer;
+    background-color: var(--med);
 }
