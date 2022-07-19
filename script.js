@@ -29,7 +29,7 @@ const Gameboard = (function () {
             if (gameBoard[a] === playerO.sign && gameBoard[b] === playerO.sign && gameBoard[c] === playerO.sign) {
                 console.log("YEAH OOOOOOO!")
                 Gameflow.stopGame()
-                
+                Dom.result.textContent = (playerO.name + " wins!")
                 
             }
         }
@@ -46,6 +46,7 @@ const Gameboard = (function () {
             if (gameBoard[a] === playerX.sign && gameBoard[b] === playerX.sign && gameBoard[c] === playerX.sign) {
                 console.log("YEAH XXXXXX!")
                 Gameflow.stopGame()
+                Dom.result.textContent = (playerX.name + " wins!")
                 
             }
         }
@@ -67,8 +68,9 @@ const Gameboard = (function () {
 const Dom = (function () {
     const square = document.querySelectorAll(".square")
     const newgame = document.querySelector(".newgame")
+    const result = document.querySelector(".result")
 
-    return { square, newgame }
+    return { square, newgame,result }
 })()
 
 //RENDER
@@ -88,8 +90,8 @@ const player = function (name, sign) {
     return { name, sign }
 }
 
-const playerX = player("playerX", "X")
-const playerO = player("playerO", "O")
+const playerX = player("player X", "X")
+const playerO = player("player O", "O")
 
 //GAMEFLOW
 
@@ -119,7 +121,7 @@ const Gameflow = (function () {
             gameOver = 0
             Gameboard.reset()
             Render.render()
-            playGame()
+            Dom.result.textContent = ""
         })
     
     }
