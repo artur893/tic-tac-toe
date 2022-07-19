@@ -28,6 +28,9 @@ const Gameboard = (function () {
         const winCheckO = function (a, b, c) {
             if (gameBoard[a] === playerO.sign && gameBoard[b] === playerO.sign && gameBoard[c] === playerO.sign) {
                 console.log("YEAH OOOOOOO!")
+                Gameflow.stopGame()
+                
+                
             }
         }
         winCheckO(0, 1, 2)
@@ -42,6 +45,8 @@ const Gameboard = (function () {
         const winCheckX = function (a, b, c) {
             if (gameBoard[a] === playerX.sign && gameBoard[b] === playerX.sign && gameBoard[c] === playerX.sign) {
                 console.log("YEAH XXXXXX!")
+                Gameflow.stopGame()
+                
             }
         }
         winCheckX(0, 1, 2)
@@ -90,12 +95,13 @@ const playerO = player("playerO", "O")
 
 const Gameflow = (function () {
     let round = 1
+    let gameOver = 0
     const playGame = function () {
         resetBoard()
         Dom.square.forEach((square) => {
             square.addEventListener("click", function (e) {
                 const index = e.target.dataset.index
-                if (Gameboard.gameBoard[index] === "") {
+                if (Gameboard.gameBoard[index] === "" && gameOver === 0) {
                     round++
                     console.log(index)
                     Gameboard.putSign(index, Gameboard.getSign(round))
@@ -110,13 +116,19 @@ const Gameflow = (function () {
     const resetBoard = function () {
         Dom.newgame.addEventListener("click", function () {
             round = 1
+            gameOver = 0
             Gameboard.reset()
             Render.render()
+            playGame()
         })
     
     }
 
-    return { playGame }
+    const stopGame = function() {
+        gameOver = 1
+    }
+
+    return { playGame, stopGame }
 })()
 
 
